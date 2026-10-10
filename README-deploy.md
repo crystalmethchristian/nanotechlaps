@@ -67,6 +67,7 @@ hides the grit/size/pack fields (only the kit line shows). Preset deep-link:
   - Images must be free-use (public domain or CC) with attribution footer on products.html.
 - **API 526 / DN spec table** is on products.html (orifices 1D2–8T10, areas, inlet/outlet, DN25–DN200).
 - **Home hero:** copy only (size disc removed per client).
+- **PRODUCTS, NOT A SERVICE:** NanoTech sells lapping glass + paste/consumables. Customers do the lapping themselves. Never imply NanoTech performs the lapping as a service ("we lap your valve seat", "have it lapped", "send us your part"). The API 526 / DN table is reference data showing what valve sizes our laps are cut to match — not a service menu.
 - **Customers:** gunsmithing, optics/watch, relief valve nozzles, automotive engine rework, stone/glass art, knife/tool, shop plates/CNC.
 - **Pricing to confirm:** see PRICING TO CONFIRM block below.
 - **Next steps likely:** real product photos (nozzles, discs, thermal disc), David sets real prices, GoDaddy deploy to nanotechlaps.com.
