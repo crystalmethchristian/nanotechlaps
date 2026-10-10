@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Lap — NanoTech Laps</title>
+  <meta name="description" content="Configure a custom NanoTech Laps glass lap: shape, size, thickness, frosted or clear, grit, and lapping paste. Request a quote instantly.">
+  <link rel="icon" type="image/png" href="images/logo-dark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav-bar" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <img src="images/logo-dark.png" alt="NanoTech Laps logo">
+        <span>
+          <span class="brand-name">NanoTech Laps</span>
+          <span class="brand-tag">Make It Pop</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="configurator.html" aria-current="page">Build Your Lap</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="kicker">Configurator</p>
+        <h1>Build Your Lap</h1>
+        <p class="sub">Pick a shape, size and grit. The summary updates live — then send your spec to us for a quote.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="config-layout">
+          <!-- FORM -->
+          <form id="config-form" novalidate>
+
+            <fieldset class="fieldset">
+              <legend>1 · Shape</legend>
+              <div class="radio-row" role="radiogroup" aria-label="Lap shape">
+                <label class="radio-card">
+                  <input type="radio" name="shape" value="Round" checked>
+                  <span><span class="rc-title">Round</span><br><span class="rc-desc">Ordered by diameter</span></span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="shape" value="Square">
+                  <span><span class="rc-title">Square</span><br><span class="rc-desc">Ordered by side length</span></span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="shape" value="Rectangle">
+                  <span><span class="rc-title">Rectangle</span><br><span class="rc-desc">Ordered by length × width</span></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend>2 · Size</legend>
+              <div class="field">
+                <span id="unit-label">Units</span>
+                <div class="unit-toggle" role="group" aria-labelledby="unit-label">
+                  <button type="button" id="unit-in" aria-pressed="true">Inches</button>
+                  <button type="button" id="unit-mm" aria-pressed="false">mm</button>
+                </div>
+              </div>
+              <div class="dim-row">
+                <div class="field" id="field-dia">
+                  <label for="diameter">Diameter</label>
+                  <input type="number" id="diameter" min="1" max="48" step="0.125" value="6" aria-describedby="dia-hint">
+                  <div class="hint" id="dia-hint">Typical 4"–12" (100–300 mm)</div>
+                </div>
+                <div class="field" id="field-length" hidden>
+                  <label for="length">Length</label>
+                  <input type="number" id="length" min="1" max="48" step="0.125" value="8" aria-describedby="len-hint">
+                  <div class="hint" id="len-hint">Typical 6"–24" (150–600 mm)</div>
+                </div>
+                <div class="field" id="field-width" hidden>
+                  <label for="width">Width</label>
+                  <input type="number" id="width" min="1" max="48" step="0.125" value="6" aria-describedby="wid-hint">
+                  <div class="hint" id="wid-hint">Typical 4"–18" (100–450 mm)</div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="thickness">Thickness</label>
+                <select id="thickness">
+                  <option value='1/4" (6 mm)'>1/4" (6 mm)</option>
+                  <option value='3/8" (10 mm)' selected>3/8" (10 mm)</option>
+                  <option value='1/2" (13 mm)'>1/2" (13 mm)</option>
+                  <option value='3/4" (19 mm)'>3/4" (19 mm)</option>
+                  <option value='1" (25 mm)'>1" (25 mm)</option>
+                </select>
+                <div class="hint">Thicker laps are more rigid — recommended for heavy parts and machine use.</div>
+              </div>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend>3 · Glass type &amp; grit</legend>
+              <div class="radio-row" role="radiogroup" aria-label="Glass type">
+                <label class="radio-card">
+                  <input type="radio" name="glass" value="Frosted" checked>
+                  <span><span class="rc-title">Frosted (ground/etched)</span><br><span class="rc-desc">Coarse-to-medium lapping · 320–1000 grit</span></span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="glass" value="Clear">
+                  <span><span class="rc-title">Clear (polished)</span><br><span class="rc-desc">Fine polishing stages · mirror finish</span></span>
+                </label>
+              </div>
+              <div class="field" id="field-grit" style="margin-top:16px">
+                <label for="grit">Lapping grit</label>
+                <select id="grit">
+                  <option value="320 grit">320 grit — coarse removal</option>
+                  <option value="400 grit">400 grit</option>
+                  <option value="600 grit" selected>600 grit — general purpose</option>
+                  <option value="800 grit">800 grit</option>
+                  <option value="1000 grit">1000 grit — pre-polish</option>
+                </select>
+                <div class="hint">Frosted laps work with abrasive paste/slurry from 320 to 1000 grit.</div>
+              </div>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend>4 · Quantity &amp; extras</legend>
+              <div class="field">
+                <label for="qty">Quantity (laps)</label>
+                <input type="number" id="qty" min="1" max="999" value="1">
+              </div>
+              <div class="check-row field">
+                <label class="radio-card">
+                  <input type="checkbox" id="want-paste">
+                  <span><span class="rc-title">Add lapping paste</span><br><span class="rc-desc">Supply paste matched to your grit</span></span>
+                </label>
+              </div>
+              <div id="paste-options" hidden>
+                <div class="dim-row">
+                  <div class="field">
+                    <label for="paste-product">Paste / kit</label>
+                    <select id="paste-product">
+                      <option value="Lapping paste tin, 600 grit, Standard tin (250 g)">Lapping paste tin — grinding grits (320–1000)</option>
+                      <option value="Finishing Ladder Kit (1000 + 2000 + 4000 grit, 3 syringes)">Finishing Ladder Kit — 1000 + 2000 + 4000 grit, 3 syringes</option>
+                      <option value="Bulk diamond paste syringe (10g+) - grit selected below">Bulk diamond paste syringe (10g+) — single grit</option>
+                      <option value="Repeat-grit multipack (5x or 10x same grit) - grit selected below">Repeat-grit multipack (shop) — 5×/10× same grit</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="dim-row">
+                  <div class="field">
+                    <label for="paste-grit">Paste grit</label>
+                    <select id="paste-grit">
+                      <option value="320">320</option>
+                      <option value="400">400</option>
+                      <option value="600" selected>600</option>
+                      <option value="800">800</option>
+                      <option value="1000">1000</option>
+                      <option value="2000">2000 (pre-polish)</option>
+                      <option value="4000">4000 (mirror polish)</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="paste-size">Tin / syringe size</label>
+                    <select id="paste-size">
+                      <option value="Small tin (100 g)">Small tin (100 g)</option>
+                      <option value="Standard tin (250 g)" selected>Standard tin (250 g)</option>
+                      <option value="Shop tin (500 g)">Shop tin (500 g)</option>
+                      <option value="10 g syringe">10 g syringe</option>
+                      <option value="20 g syringe">20 g syringe</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="hint">Ordering 5+ kits or multipacks? Mention it in Notes — volume pricing, ask us, and we'll quote the tier by email.</div>
+              </div>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend>5 · Your details</legend>
+              <div class="dim-row">
+                <div class="field">
+                  <label for="cust-name">Name</label>
+                  <input type="text" id="cust-name" autocomplete="name" placeholder="Your full name" required>
+                </div>
+                <div class="field">
+                  <label for="cust-email">Email</label>
+                  <input type="email" id="cust-email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="cust-notes">Notes (application, tolerances, timeline)</label>
+                <textarea id="cust-notes" placeholder="e.g. Lapping 1911 barrel lugs, need 6 flats, shipping to Ohio"></textarea>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Request Quote</button>
+          </form>
+
+          <!-- SUMMARY -->
+          <aside class="summary" aria-live="polite">
+            <h2>Order Summary</h2>
+            <dl id="summary-list">
+              <dt>Shape</dt><dd id="s-shape">Round</dd>
+              <dt>Size</dt><dd id="s-size">6" (152 mm) dia.</dd>
+              <dt>Thickness</dt><dd id="s-thickness">3/8" (10 mm)</dd>
+              <dt>Glass</dt><dd id="s-glass">Frosted</dd>
+              <dt>Grit</dt><dd id="s-grit">600 grit</dd>
+              <dt>Quantity</dt><dd id="s-qty">1 lap</dd>
+              <dt>Paste</dt><dd id="s-paste">None</dd>
+            </dl>
+            <p class="note">Submitting opens your email app with this spec prefilled. No account, no data collection.</p>
+            <button type="button" class="btn btn-gold" id="copy-btn" style="width:100%">Copy Text Summary</button>
+            <div class="status-msg" id="status-msg" role="status"></div>
+            <h3 style="margin-top:18px" id="text-preview-title">Text summary</h3>
+            <div class="output-block" id="text-preview" tabindex="0" aria-labelledby="text-preview-title"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="images/logo-dark.png" alt="NanoTech Laps logo">
+            <span>
+              <span class="brand-name">NanoTech Laps</span>
+              <span class="brand-tag">Make It Pop</span>
+            </span>
+          </a>
+          <p class="dim" style="margin-top:12px">Precision lapping glass, made to your spec. Frosted laps, clear laps, and matched lapping paste.</p>
+        </div>
+        <div>
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="configurator.html">Build Your Lap</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>David Zuppo</li>
+            <li><a href="mailto:Zuppo1976@yahoo.com">Zuppo1976@yahoo.com</a></li>
+            <li>nanotechlaps.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© NanoTech Laps. All rights reserved.</span>
+        <span>Made for flat work.</span>
+      </div>
+    </div>
+    <script src="js/nav.js"></script>
+    <script src="js/configurator.js"></script>
+  </footer>
+</body>
+</html>
