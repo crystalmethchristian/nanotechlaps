@@ -44,11 +44,36 @@ Unknown/missing values fall back to form defaults silently. Paste presets add on
 
 ## Product photos (attribution required)
 
-- `images/valve-bopp-reutter.jpg` — © CEphoto, Uwe Aranas, CC BY-SA 3.0, via Wikimedia Commons
-- `images/valve-dn25.jpg` — © RomanM82, CC BY-SA 4.0, via Wikimedia Commons
-- `images/valve-schematic.png` — © Mbeychok, CC BY-SA 3.0, via Wikimedia Commons
+All free-use, via Wikimedia Commons. Attribution footer is on `products.html` — keep it if the photos are kept.
 
-Attribution footer is on `products.html`. Keep it if the photos are kept.
+- `images/navy-valve-seat.jpg` — U.S. Navy (public domain), photo by MCS2 Christopher Dollar
+- `images/valve-dn25.jpg` — © RomanM82, CC BY-SA 4.0
+- `images/valve-schematic.png` — © Mbeychok, CC BY-SA 3.0 (generic relief-valve cross-section, not a manufacturer diagram)
+- `images/surface-damaged.jpg` — CC0 (public domain)
+- `images/surface-lapped.jpg` — © Bestemrc, CC BY-SA 4.0
+
+## API 526 / DN spec table (products page)
+
+The "Standard relief valve sizes we lap to" table lists API 526 standard orifice
+designations (1D2 … 8T10), effective areas, typical inlet/outlet, and common DN size.
+Values are the standard's published effective areas (factual reference data — safe to
+reproduce). The DN column is a convenience mapping (DN25=1" … DN200=8").
+
+## Legal notes (client rule — check before adding any brand names)
+
+- **Maxiflow / Consolidated / Farris:** do NOT use these brand names on the site. They are
+  competitors' trademarks; a small shop has no need to invoke them. We describe the valve
+  type generically ("spring-loaded pop-off valve", "full-bore relief valve") instead.
+- **Schematics:** only generic, unbranded cross-sections. Never a specific manufacturer's
+  product diagram, part numbers, or rendering.
+- **API 526:** fine to reference — it's an industry standard and the data is factual.
+  Don't claim API certification or ASME-stamped work.
+- **Competitor names (Lapmaster Wolters, Gesswein, Rubble Rock & Gem, TechDiamondTools):**
+  used only in factual comparison/market-anchor context. Keep comparisons factual, no
+  disparagement, no "we are X" claims.
+- **Photos:** only public-domain or CC-licensed images with attribution. No competitor
+  product photos.
+- **No "diamond paste"** for our product (see Naming rule below).
 
 ## Naming rule
 

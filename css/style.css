@@ -355,6 +355,11 @@ textarea { min-height: 110px; resize: vertical; }
 
 /* ---------- Valve photo feature (products) ---------- */
 .valve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; margin-bottom: 18px; }
+.before-after { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; margin: 10px 0 22px; }
+.before-after .photo-card { border-color: var(--line); }
+.before-after .photo-card img { height: 300px; }
+.before-after .photo-card:nth-child(1) figcaption { color: var(--text-dim); }
+.before-after .photo-card:nth-child(2) { border-color: var(--gold); }
 .photo-card {
   background: var(--panel); border: 2px solid var(--blue); border-radius: var(--radius);
   padding: 12px; display: flex; flex-direction: column; gap: 10px;
