@@ -135,9 +135,9 @@ p { margin: 0 0 1em; }
 .hero .sub { max-width: 60ch; color: var(--text-dim); font-size: 1.1rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
 
-/* Home hero: copy + glass-disc motif, left-aligned, one orchestrated load. */
+/* Home hero: copy only, one orchestrated load. */
 .hero-home {
-  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+  display: grid; grid-template-columns: 1fr;
   align-items: center; gap: 48px;
 }
 @media (max-width: 860px) { .hero-home { grid-template-columns: 1fr; } }

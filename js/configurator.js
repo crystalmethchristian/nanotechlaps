@@ -344,6 +344,7 @@
     if (paste && paste !== 'none') {
       els.wantPaste.checked = true;
       var pgrit = q.get('paste_grit') || '600';
+      // Kit sells as-is: no grit/size/pack selection — just the kit.
       if (paste === 'kit') setPasteLine('kit', pgrit, 'Standard tin (250 g)', '10×');
       else if (paste === 'syringe') setPasteLine('syringe', pgrit, '10 g syringe', '10×');
       else if (paste === 'multipack') setPasteLine('multipack', pgrit, '10 g syringe', '10×');
