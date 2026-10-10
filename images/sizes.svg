@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="sz-title sz-desc">
+  <title id="sz-title">Nanotech Laps hosted round-lap sizes at true relative scale</title>
+  <desc id="sz-desc">Black chart showing frosted-glass circles from 1 inch through 12 inches in two ascending rows, each labeled in gold with its inch diameter. Sizes 1.5 inches, 11 inches and anything else are custom, made to order by email.</desc>
+  <defs>
+    <radialGradient id="frost" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#F5F5F5" stop-opacity="0.30"/>
+      <stop offset="55%" stop-color="#F5F5F5" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#175EF8" stop-opacity="0.18"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="640" fill="#000000"/>
+  <text x="60" y="44" font-family="sans-serif" font-size="16" fill="#F5F5F5">Hosted round sizes — true relative scale (diameter)</text>
+  <line x1="60" y1="250" x2="1140" y2="250" stroke="#175EF8" stroke-width="1" opacity="0.25"/>
+  <line x1="60" y1="560" x2="1140" y2="560" stroke="#175EF8" stroke-width="1" opacity="0.25"/>
+    <circle cx="240.0" cy="245.0" r="5.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="295.0" cy="240.0" r="10.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="357.5" cy="237.5" r="12.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="425.0" cy="235.0" r="15.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="497.5" cy="232.5" r="17.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="575.0" cy="230.0" r="20.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="657.5" cy="227.5" r="22.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="745.0" cy="225.0" r="25.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="837.5" cy="222.5" r="27.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="837.5" cy="222.5" r="15.1" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="935.0" cy="220.0" r="30.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="935.0" cy="220.0" r="16.5" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="91.0" cy="527.5" r="32.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="91.0" cy="527.5" r="17.9" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="180.5" cy="525.0" r="35.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="180.5" cy="525.0" r="19.2" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="275.0" cy="522.5" r="37.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="275.0" cy="522.5" r="20.6" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="374.5" cy="520.0" r="40.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="374.5" cy="520.0" r="22.0" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="479.0" cy="517.5" r="42.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="479.0" cy="517.5" r="23.4" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="588.5" cy="515.0" r="45.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="588.5" cy="515.0" r="24.8" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="703.0" cy="512.5" r="47.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="703.0" cy="512.5" r="26.1" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="822.5" cy="510.0" r="50.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="822.5" cy="510.0" r="27.5" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="947.0" cy="507.5" r="52.5" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="947.0" cy="507.5" r="28.9" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <circle cx="1081.5" cy="500.0" r="60.0" fill="url(#frost)" stroke="#175EF8" stroke-width="2.5"/>
+    <circle cx="1081.5" cy="500.0" r="33.0" fill="none" stroke="#175EF8" stroke-width="1" opacity="0.35"/>
+    <text x="240.0" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">1"</text>
+    <text x="295.0" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">2"</text>
+    <text x="357.5" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">2.5"</text>
+    <text x="425.0" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">3"</text>
+    <text x="497.5" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">3.5"</text>
+    <text x="575.0" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">4"</text>
+    <text x="657.5" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">4.5"</text>
+    <text x="745.0" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">5"</text>
+    <text x="837.5" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">5.5"</text>
+    <text x="935.0" y="274" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">6"</text>
+    <text x="91.0" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">6.5"</text>
+    <text x="180.5" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">7"</text>
+    <text x="275.0" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">7.5"</text>
+    <text x="374.5" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">8"</text>
+    <text x="479.0" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">8.5"</text>
+    <text x="588.5" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">9"</text>
+    <text x="703.0" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">9.5"</text>
+    <text x="822.5" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">10"</text>
+    <text x="947.0" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">10.5"</text>
+    <text x="1081.5" y="586" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="600" fill="#F0DC2A">12"</text>
+  <text x="600.0" y="622" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#F0DC2A">1.5", 11" &amp; anything else: custom — made to order, email us</text>
+</svg>

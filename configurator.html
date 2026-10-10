@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Build Your Lap — NanoTech Laps</title>
-  <meta name="description" content="Configure a custom NanoTech Laps glass lap: shape, size, thickness, frosted or clear, grit, and lapping paste. Request a quote instantly.">
+  <meta name="description" content="Configure a NanoTech Laps glass lap: shape, hosted sizes from 1 inch to 12 inches (custom by email), thickness, frosted or clear, grit, and lapping paste. Request a quote instantly.">
   <link rel="icon" type="image/png" href="images/logo-dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -68,6 +68,10 @@
 
             <fieldset class="fieldset">
               <legend>2 · Size</legend>
+              <figure class="size-chart">
+                <img src="images/sizes.svg" width="1200" height="640" alt="Chart of hosted round lap sizes at true relative scale: two ascending rows of frosted glass circles from 1 inch through 12 inches, each labeled in gold. 1.5 inch, 11 inch and any other size are custom, made to order, email us.">
+                <figcaption class="dim">Hosted round sizes at true relative scale. Anything off this list — 1.5", 11", larger, smaller — is custom, made to order.</figcaption>
+              </figure>
               <div class="field">
                 <span id="unit-label">Units</span>
                 <div class="unit-toggle" role="group" aria-labelledby="unit-label">
@@ -78,21 +82,91 @@
               <div class="dim-row">
                 <div class="field" id="field-dia">
                   <label for="diameter">Diameter</label>
-                  <input type="number" id="diameter" min="1" max="48" step="0.125" value="6" aria-describedby="dia-hint">
-                  <div class="hint" id="dia-hint">Typical 4"–12" (100–300 mm)</div>
+                  <select id="diameter" aria-describedby="dia-hint">
+                    <option value="1">1" (25.4 mm)</option>
+                    <option value="2">2" (50.8 mm)</option>
+                    <option value="2.5">2.5" (63.5 mm)</option>
+                    <option value="3">3" (76.2 mm)</option>
+                    <option value="3.5">3.5" (88.9 mm)</option>
+                    <option value="4">4" (101.6 mm)</option>
+                    <option value="4.5">4.5" (114.3 mm)</option>
+                    <option value="5">5" (127 mm)</option>
+                    <option value="5.5">5.5" (139.7 mm)</option>
+                    <option value="6" selected>6" (152.4 mm)</option>
+                    <option value="6.5">6.5" (165.1 mm)</option>
+                    <option value="7">7" (177.8 mm)</option>
+                    <option value="7.5">7.5" (190.5 mm)</option>
+                    <option value="8">8" (203.2 mm)</option>
+                    <option value="8.5">8.5" (215.9 mm)</option>
+                    <option value="9">9" (228.6 mm)</option>
+                    <option value="9.5">9.5" (241.3 mm)</option>
+                    <option value="10">10" (254 mm)</option>
+                    <option value="10.5">10.5" (266.7 mm)</option>
+                    <option value="12">12" (304.8 mm)</option>
+                    <option value="custom">Custom (email us)</option>
+                  </select>
+                  <div class="hint" id="dia-hint">Hosted diameters 1"–12". Your lap should fully cover the largest face you'll work.</div>
                 </div>
                 <div class="field" id="field-length" hidden>
                   <label for="length">Length</label>
-                  <input type="number" id="length" min="1" max="48" step="0.125" value="8" aria-describedby="len-hint">
-                  <div class="hint" id="len-hint">Typical 6"–24" (150–600 mm)</div>
+                  <select id="length" aria-describedby="len-hint">
+                    <option value="1">1" (25.4 mm)</option>
+                    <option value="2">2" (50.8 mm)</option>
+                    <option value="2.5">2.5" (63.5 mm)</option>
+                    <option value="3">3" (76.2 mm)</option>
+                    <option value="3.5">3.5" (88.9 mm)</option>
+                    <option value="4">4" (101.6 mm)</option>
+                    <option value="4.5">4.5" (114.3 mm)</option>
+                    <option value="5">5" (127 mm)</option>
+                    <option value="5.5">5.5" (139.7 mm)</option>
+                    <option value="6">6" (152.4 mm)</option>
+                    <option value="6.5">6.5" (165.1 mm)</option>
+                    <option value="7">7" (177.8 mm)</option>
+                    <option value="7.5">7.5" (190.5 mm)</option>
+                    <option value="8" selected>8" (203.2 mm)</option>
+                    <option value="8.5">8.5" (215.9 mm)</option>
+                    <option value="9">9" (228.6 mm)</option>
+                    <option value="9.5">9.5" (241.3 mm)</option>
+                    <option value="10">10" (254 mm)</option>
+                    <option value="10.5">10.5" (266.7 mm)</option>
+                    <option value="12">12" (304.8 mm)</option>
+                    <option value="custom">Custom (email us)</option>
+                  </select>
+                  <div class="hint" id="len-hint">Hosted sizes on the same list. Match the part footprint.</div>
                 </div>
                 <div class="field" id="field-width" hidden>
                   <label for="width">Width</label>
-                  <input type="number" id="width" min="1" max="48" step="0.125" value="6" aria-describedby="wid-hint">
-                  <div class="hint" id="wid-hint">Typical 4"–18" (100–450 mm)</div>
+                  <select id="width" aria-describedby="wid-hint">
+                    <option value="1">1" (25.4 mm)</option>
+                    <option value="2">2" (50.8 mm)</option>
+                    <option value="2.5">2.5" (63.5 mm)</option>
+                    <option value="3">3" (76.2 mm)</option>
+                    <option value="3.5">3.5" (88.9 mm)</option>
+                    <option value="4">4" (101.6 mm)</option>
+                    <option value="4.5">4.5" (114.3 mm)</option>
+                    <option value="5">5" (127 mm)</option>
+                    <option value="5.5">5.5" (139.7 mm)</option>
+                    <option value="6" selected>6" (152.4 mm)</option>
+                    <option value="6.5">6.5" (165.1 mm)</option>
+                    <option value="7">7" (177.8 mm)</option>
+                    <option value="7.5">7.5" (190.5 mm)</option>
+                    <option value="8">8" (203.2 mm)</option>
+                    <option value="8.5">8.5" (215.9 mm)</option>
+                    <option value="9">9" (228.6 mm)</option>
+                    <option value="9.5">9.5" (241.3 mm)</option>
+                    <option value="10">10" (254 mm)</option>
+                    <option value="10.5">10.5" (266.7 mm)</option>
+                    <option value="12">12" (304.8 mm)</option>
+                    <option value="custom">Custom (email us)</option>
+                  </select>
+                  <div class="hint" id="wid-hint">Hosted sizes on the same list.</div>
                 </div>
               </div>
-              <div class="field">
+              <div class="custom-notice" id="custom-notice" role="note" hidden>
+                <h3>Custom size — made to order</h3>
+                <p>Sizes outside the hosted list — 1.5", 11", anything else — are cut to order. They may take longer to ship and cost more, and the quote for a custom size is <strong>direct-email only</strong>: fill in your exact dimensions in the Notes field below and press Request Quote. Every other spec in this form goes to David with your request.</p>
+              </div>
+              <div class="field" style="margin-top:16px">
                 <label for="thickness">Thickness</label>
                 <select id="thickness">
                   <option value='1/4" (6 mm)'>1/4" (6 mm)</option>
@@ -139,46 +213,60 @@
               <div class="check-row field">
                 <label class="radio-card">
                   <input type="checkbox" id="want-paste">
-                  <span><span class="rc-title">Add lapping paste</span><br><span class="rc-desc">Supply paste matched to your grit</span></span>
+                  <span><span class="rc-title">Add lapping paste</span><br><span class="rc-desc">Mix &amp; match: one line per grit or item</span></span>
                 </label>
               </div>
               <div id="paste-options" hidden>
-                <div class="dim-row">
-                  <div class="field">
-                    <label for="paste-product">Paste / kit</label>
-                    <select id="paste-product">
-                      <option value="Lapping paste tin, 600 grit, Standard tin (250 g)">Lapping paste tin — grinding grits (320–1000)</option>
-                      <option value="Finishing Ladder Kit (1000 + 2000 + 4000 grit, 3 syringes)">Finishing Ladder Kit — 1000 + 2000 + 4000 grit, 3 syringes</option>
-                      <option value="Bulk diamond paste syringe (10g+) - grit selected below">Bulk diamond paste syringe (10g+) — single grit</option>
-                      <option value="Repeat-grit multipack (5x or 10x same grit) - grit selected below">Repeat-grit multipack (shop) — 5×/10× same grit</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="dim-row">
-                  <div class="field">
-                    <label for="paste-grit">Paste grit</label>
-                    <select id="paste-grit">
-                      <option value="320">320</option>
-                      <option value="400">400</option>
-                      <option value="600" selected>600</option>
-                      <option value="800">800</option>
-                      <option value="1000">1000</option>
-                      <option value="2000">2000 (pre-polish)</option>
-                      <option value="4000">4000 (mirror polish)</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="paste-size">Tin / syringe size</label>
-                    <select id="paste-size">
-                      <option value="Small tin (100 g)">Small tin (100 g)</option>
-                      <option value="Standard tin (250 g)" selected>Standard tin (250 g)</option>
-                      <option value="Shop tin (500 g)">Shop tin (500 g)</option>
-                      <option value="10 g syringe">10 g syringe</option>
-                      <option value="20 g syringe">20 g syringe</option>
-                    </select>
-                  </div>
-                </div>
+                <p class="dim paste-intro">Build your paste order line by line. Add a line for each grit or item you want — for example a 600-grit tin for the lap above <em>plus</em> the Finishing Ladder Kit for polishing, <em>plus</em> a 4000 syringe for the final stage. Every line goes to David in your quote.</p>
+                <div id="paste-lines"></div>
+                <button type="button" id="add-paste-line" class="btn-add-line">+ Add another paste line</button>
                 <div class="hint">Ordering 5+ kits or multipacks? Mention it in Notes — volume pricing, ask us, and we'll quote the tier by email.</div>
+                <template id="paste-line-template">
+                  <div class="paste-line">
+                    <div class="dim-row">
+                      <div class="field">
+                        <label class="pl-label">Paste / kit</label>
+                        <select class="pl-product">
+                          <option data-key="tin" value="Lapping paste tin">Lapping paste tin — grinding grits (320–1000)</option>
+                          <option data-key="kit" value="Finishing Ladder Kit (1000 + 1500 + 2000 + 4000 grit, 4 syringes)">Finishing Ladder Kit — 1000 + 1500 + 2000 + 4000 grit, 4 syringes</option>
+                          <option data-key="syringe" value="Bulk nano-crystalline lapping compound syringe">Bulk nano-crystalline lapping compound syringe — single grit</option>
+                          <option data-key="multipack" value="Repeat-grit multipack">Repeat-grit multipack (shop) — same grit, 5×/10×</option>
+                        </select>
+                      </div>
+                      <div class="field pl-grit">
+                        <label class="pl-label">Paste grit</label>
+                        <select class="pl-grit">
+                          <option value="320">320</option>
+                          <option value="400">400</option>
+                          <option value="600" selected>600</option>
+                          <option value="800">800</option>
+                          <option value="1000">1000</option>
+                          <option value="1500">1500</option>
+                          <option value="2000">2000 (pre-polish)</option>
+                          <option value="4000">4000 (mirror polish)</option>
+                        </select>
+                      </div>
+                      <div class="field pl-size">
+                        <label class="pl-label">Tin / syringe size</label>
+                        <select class="pl-size">
+                          <option value="Small tin (100 g)">Small tin (100 g)</option>
+                          <option value="Standard tin (250 g)" selected>Standard tin (250 g)</option>
+                          <option value="Shop tin (500 g)">Shop tin (500 g)</option>
+                          <option value="10 g syringe">10 g syringe</option>
+                          <option value="20 g syringe">20 g syringe</option>
+                        </select>
+                      </div>
+                      <div class="field pl-pack">
+                        <label class="pl-label">Multipack quantity</label>
+                        <select class="pl-pack">
+                          <option value="5×">5×</option>
+                          <option value="10×" selected>10×</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button type="button" class="btn-remove-line" hidden>Remove this line</button>
+                  </div>
+                </template>
               </div>
             </fieldset>
 
@@ -196,7 +284,7 @@
               </div>
               <div class="field">
                 <label for="cust-notes">Notes (application, tolerances, timeline)</label>
-                <textarea id="cust-notes" placeholder="e.g. Lapping 1911 barrel lugs, need 6 flats, shipping to Ohio"></textarea>
+                <textarea id="cust-notes" placeholder="e.g. Lapping 1911 barrel lugs, need 6 flats, shipping to Ohio. For a custom size, include your exact dimensions here."></textarea>
               </div>
             </fieldset>
 
@@ -208,14 +296,14 @@
             <h2>Order Summary</h2>
             <dl id="summary-list">
               <dt>Shape</dt><dd id="s-shape">Round</dd>
-              <dt>Size</dt><dd id="s-size">6" (152 mm) dia.</dd>
+              <dt>Size</dt><dd id="s-size">6" (152.4 mm) dia.</dd>
               <dt>Thickness</dt><dd id="s-thickness">3/8" (10 mm)</dd>
               <dt>Glass</dt><dd id="s-glass">Frosted</dd>
               <dt>Grit</dt><dd id="s-grit">600 grit</dd>
               <dt>Quantity</dt><dd id="s-qty">1 lap</dd>
               <dt>Paste</dt><dd id="s-paste">None</dd>
             </dl>
-            <p class="note">Submitting opens your email app with this spec prefilled. No account, no data collection.</p>
+            <p class="note">Submitting opens your email app with this spec prefilled. No account, no data collection. Custom sizes: quote by direct email — put exact dimensions in Notes.</p>
             <button type="button" class="btn btn-gold" id="copy-btn" style="width:100%">Copy Text Summary</button>
             <div class="status-msg" id="status-msg" role="status"></div>
             <h3 style="margin-top:18px" id="text-preview-title">Text summary</h3>
