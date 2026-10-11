@@ -33,10 +33,10 @@ export function initValve3D() {
   const fb = container.querySelector('.valve-fallback');
   if (fb) fb.style.display = 'none';
 
-  // Camera
-  const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
-  camera.position.set(6, 5, 8);
-  camera.lookAt(0, 3, 0);
+  // Camera (pulled back so the whole valve fits in frame)
+  const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 200);
+  camera.position.set(11, 8, 18);
+  camera.lookAt(1.5, 5.5, 0);
 
   // Scene
   const scene = new THREE.Scene();
@@ -280,9 +280,9 @@ export function initValve3D() {
   controls.dampingFactor = 0.08;
   controls.autoRotate = true;
   controls.autoRotateSpeed = 1.2;
-  controls.target.set(2, 5, 0);
-  controls.minDistance = 5;
-  controls.maxDistance = 20;
+  controls.target.set(1.5, 5.5, 0);
+  controls.minDistance = 12;
+  controls.maxDistance = 45;
   controls.enablePan = false;
 
   // Pause auto-rotate while dragging
