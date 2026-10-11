@@ -8,13 +8,30 @@ export function initValve3D() {
   const container = document.getElementById('valve3d-canvas');
   if (!container) return;
 
-  // Renderer
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const failFallback = (msg) => {
+    const fb = container.querySelector('.valve-fallback');
+    if (fb) {
+      fb.querySelector('p').textContent = msg;
+    }
+    const btn = document.getElementById('valve-cutaway-toggle');
+    if (btn) btn.style.display = 'none';
+  };
+
+  // Renderer (throws if WebGL is unavailable)
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+  } catch (e) {
+    failFallback('The 3D preview needs a browser with WebGL enabled. The valve specs are on the products page.');
+    return;
+  }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.localClippingEnabled = true;
   renderer.setClearColor(0x000000, 1);
   container.appendChild(renderer.domElement);
+  const fb = container.querySelector('.valve-fallback');
+  if (fb) fb.style.display = 'none';
 
   // Camera
   const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
