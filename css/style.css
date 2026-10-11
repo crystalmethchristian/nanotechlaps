@@ -415,6 +415,99 @@ textarea { min-height: 110px; resize: vertical; }
 .gold { color: var(--gold); }
 .dim { color: var(--text-dim); }
 .mt-0 { margin-top: 0; }
+
+/* ---------- Cutaway valve 3D section ---------- */
+.cutaway-valve {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cutaway-valve .container { max-width: var(--maxw); }
+.cutaway-valve .valve-head {
+  max-width: 65ch;
+  margin-bottom: 28px;
+}
+.cutaway-valve .valve-head h2 {
+  font-family: var(--font-display);
+  color: var(--text);
+  font-size: clamp(1.35rem, 3vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.15;
+  padding-left: 14px;
+  border-left: 5px solid var(--gold);
+  margin: 0 0 12px;
+}
+.cutaway-valve .valve-head p {
+  color: var(--text-dim);
+  font-size: 1rem;
+  margin: 0 0 14px;
+}
+.valve-container {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  background: var(--black);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.valve-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.valve-container .valve-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 0.95rem;
+  padding: 20px;
+  text-align: center;
+  gap: 12px;
+}
+.valve-container .valve-fallback a {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.valve-label {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 3px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--gold);
+}
+.valve-cutaway-btn {
+  display: block;
+  margin: 16px auto 0;
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 9px 22px;
+  font: 700 0.9rem var(--font-body);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.valve-cutaway-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+@media (max-width: 600px) {
+  .cutaway-valve { padding: 36px 0; }
+  .valve-container { max-width: 100%; }
+}
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
