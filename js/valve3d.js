@@ -1,5 +1,13 @@
 // js/valve3d.js — Interactive 3D cutaway relief valve (ES module)
 // Uses Three.js via importmap (three@0.160.0 from unpkg)
+//
+// API 526 vertical spring-loaded relief valve, vertical orientation:
+// inlet at the BOTTOM, outlet at the TOP (vertical upward discharge).
+// Bottom -> top: inlet flange -> body -> nozzle (with seat ring at its top)
+// -> plug (disc) -> spring -> bonnet/spring housing -> back seat -> top cap
+// -> outlet discharging vertically upward. The gold faces are the three
+// lapped faces: seat face (top of nozzle), plug face (bottom of plug),
+// and back seat (the second, higher seat).
 
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
@@ -34,10 +42,10 @@ export function initValve3D() {
   const fb = container.querySelector('.valve-fallback');
   if (fb) fb.style.display = 'none';
 
-  // Camera (pulled back so the whole valve fits in frame)
+  // Camera (pulled back so the whole vertical valve fits in frame)
   const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 200);
-  camera.position.set(11, 8, 18);
-  camera.lookAt(1.5, 5.5, 0);
+  camera.position.set(12, 6, 17);
+  camera.lookAt(0, 5.5, 0);
 
   // Scene
   const scene = new THREE.Scene();
@@ -53,11 +61,11 @@ export function initValve3D() {
   scene.add(keyLight);
 
   const fillLight = new THREE.DirectionalLight(0x8899ff, 1.0);
-  fillLight.position.set(-8, 4, -6);
+  fillLight.position.set(-8, 6, -6);
   scene.add(fillLight);
 
   const rimLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  rimLight.position.set(0, 6, -10);
+  rimLight.position.set(0, 4, -10);
   scene.add(rimLight);
 
   const ambientLight = new THREE.AmbientLight(0x666677, 1.2);
@@ -91,102 +99,114 @@ export function initValve3D() {
     side: THREE.DoubleSide
   });
 
-  // Clipping plane (cuts through the body at X = 2.5)
-  const clipPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 2.5);
+  // Clipping plane (cuts away the +x half to expose the internals)
+  const clipPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0);
 
-  // Build model
+  // ---- Build the solid (normal-view) model ----
+  // Vertical stack, built from the bottom up along +Y.
+  // Inlet flange at the bottom, outlet at the top.
   const model = new THREE.Group();
 
-  // Valve body (main cylinder)
-  const body = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 6, 32), bodyMat);
-  body.position.set(0, 3, 0);
-  model.add(body);
+  const INLET_R = 2.8;      // inlet flange radius
+  const BODY_R = 2;         // body radius
+  const NOZZLE_R_BOT = 1.6; // nozzle base radius
+  const NOZZLE_R_TOP = 1.1; // nozzle / seat-ring radius at top
 
-  // Bonnet (sits on top of body)
-  const bonnet = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 3, 32), bonnetMat);
-  bonnet.position.set(0, 7.5, 0);
-  model.add(bonnet);
-
-  // Spring housing (wider cylinder on top)
-  const springHousing = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 2, 32), springHousingMat);
-  springHousing.position.set(0, 10, 0);
-  model.add(springHousing);
-
-  // Top cap
-  const cap = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.6, 0.3, 32), flangeMat);
-  cap.position.set(0, 11.15, 0);
-  model.add(cap);
-
-  // Inlet flange (bottom)
-  const inletFlange = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 2.8, 0.4, 32), flangeMat);
-  inletFlange.position.set(0, 0.2, 0);
+  // (1) Inlet flange — horizontal disc at the very bottom, facing down
+  const inletFlange = new THREE.Mesh(
+    new THREE.CylinderGeometry(INLET_R, INLET_R, 0.6, 32), flangeMat);
+  inletFlange.position.y = 0.3;
   model.add(inletFlange);
 
-  // Inlet bolt holes (8 bolts)
+  // Inlet bolt circle (8 bolts)
   const boltCount = 8;
   const boltR = 2.4;
   for (let i = 0; i < boltCount; i++) {
     const angle = (i / boltCount) * Math.PI * 2;
-    const bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.6, 8), flangeMat);
-    bolt.position.set(
-      Math.cos(angle) * boltR,
-      0.2,
-      Math.sin(angle) * boltR
-    );
+    const bolt = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.12, 0.12, 0.8, 8), flangeMat);
+    bolt.position.set(Math.cos(angle) * boltR, 0.3, Math.sin(angle) * boltR);
     model.add(bolt);
   }
 
-  // Outlet flange (on side, near top of body)
-  const outletFlange = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.4, 24), flangeMat);
-  outletFlange.rotation.z = Math.PI / 2;
-  outletFlange.position.set(4.2, 8, 0);
-  model.add(outletFlange);
+  // (3) Valve body — vertical cylinder rising off the inlet flange
+  const body = new THREE.Mesh(
+    new THREE.CylinderGeometry(BODY_R, BODY_R, 6, 32), bodyMat);
+  body.position.y = 0.6 + 3;
+  model.add(body);
 
-  // Nozzle (extends from body toward outlet)
-  const nozzle = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 3.5, 24), bodyMat);
-  nozzle.rotation.z = Math.PI / 2;
-  nozzle.position.set(3.25, 6.5, 0);
+  // (2) Nozzle — tapered land rising up out of the body bottom,
+  // ending in the seat ring near the top of the body.
+  const nozzle = new THREE.Mesh(
+    new THREE.CylinderGeometry(NOZZLE_R_TOP, NOZZLE_R_BOT, 5.2, 32), bodyMat);
+  nozzle.position.y = 0.6 + 2.6;
   model.add(nozzle);
 
-  // Seat ring (torus on top of nozzle)
+  // (4) Seat ring — top face of the nozzle, facing up (lapped face #1)
   const seatRing = new THREE.Mesh(
-    new THREE.TorusGeometry(1.2, 0.15, 12, 24),
-    goldMat
-  );
-  seatRing.rotation.x = Math.PI / 2;
-  seatRing.position.set(3.25, 8.2, 0);
+    new THREE.CylinderGeometry(NOZZLE_R_TOP, NOZZLE_R_TOP, 0.25, 32), goldMat);
+  seatRing.position.y = 0.6 + 5.2 + 0.125;
   model.add(seatRing);
 
-  // Plug (disc that seals against seat)
-  const plug = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.3, 0.3, 24), goldMat);
-  plug.rotation.x = Math.PI / 2;
-  plug.position.set(3.25, 6.5, 0);
+  // (5) Plug (disc) — rests on top of the seat ring.
+  // Its bottom face is lapped face #2 ('Plug face').
+  const plug = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.35, 1.35, 0.4, 32), goldMat);
+  plug.position.y = 0.6 + 5.2 + 0.25 + 0.2;
   model.add(plug);
 
-  // Spring (simplified as a coiled wire)
-  const springCurve = new THREE.Curve();
-  const springPoints = [];
+  // (6) Spring — sits on top of the plug, inside the bonnet, pressing it down.
   const springCoils = 6;
-  const springHeight = 2.5;
-  const springRadius = 1.2;
-  for (let i = 0; i <= 100; i++) {
-    const t = i / 100;
+  const springHeight = 3;
+  const springRadius = 0.9;
+  const springBaseY = 0.6 + 5.2 + 0.25 + 0.4;
+  const springPoints = [];
+  for (let i = 0; i <= 120; i++) {
+    const t = i / 120;
     const angle = t * springCoils * Math.PI * 2;
     springPoints.push(new THREE.Vector3(
       Math.cos(angle) * springRadius,
-      8.5 + t * springHeight,
+      springBaseY + t * springHeight,
       Math.sin(angle) * springRadius
     ));
   }
-  const springGeometry = new THREE.TubeGeometry(
-    new THREE.CatmullRomCurve3(springPoints),
-    100, 0.08, 8, false
-  );
-  const spring = new THREE.Mesh(springGeometry, springMat);
+  const spring = new THREE.Mesh(
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3(springPoints), 120, 0.09, 8, false),
+    springMat);
   model.add(spring);
+
+  // (7) Bonnet / spring housing — cylinder around the spring, bolted to body.
+  const bonnet = new THREE.Mesh(
+    new THREE.CylinderGeometry(BODY_R, BODY_R, 3.8, 32), bonnetMat);
+  bonnet.position.y = springBaseY + springHeight + 0.7;
+  model.add(bonnet);
+
+  // (8) Back seat — second, higher seat (top of plug/guide against bonnet)
+  const backSeat = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.95, 0.95, 0.2, 32), goldMat);
+  backSeat.position.y = springBaseY + springHeight + 0.4;
+  model.add(backSeat);
+
+  // (9) Top cap / closure
+  const cap = new THREE.Mesh(
+    new THREE.CylinderGeometry(BODY_R + 0.15, BODY_R + 0.15, 0.35, 32), flangeMat);
+  cap.position.y = bonnet.position.y + 2.05;
+  model.add(cap);
+
+  // (10) Outlet — discharges vertically upward from the top of the body.
+  // A vertical nozzle ending in an outlet flange pointing up.
+  const outlet = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.1, 1.3, 1.6, 32), bodyMat);
+  outlet.position.y = cap.position.y + 0.9;
+  model.add(outlet);
+  const outletFlange = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.7, 1.7, 0.3, 32), flangeMat);
+  outletFlange.position.y = cap.position.y + 1.75;
+  model.add(outletFlange);
 
   // ---- Cutaway model (duplicates with clipping) ----
   const cutawayModel = new THREE.Group();
+
   const cutawayMat = bodyMat.clone();
   cutawayMat.clippingPlanes = [clipPlane];
   cutawayMat.clipShadows = true;
@@ -215,74 +235,26 @@ export function initValve3D() {
   cutawayGoldMat.clippingPlanes = [clipPlane];
   cutawayGoldMat.clipShadows = true;
   cutawayGoldMat.transparent = true;
-  cutawayGoldMat.opacity = 0.85;
+  cutawayGoldMat.opacity = 0.9;
 
-  const cutawayBody = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 6, 32), cutawayMat);
-  cutawayBody.position.set(0, 3, 0);
-  cutawayModel.add(cutawayBody);
-
-  const cutawayBonnet = new THREE.Mesh(new THREE.CylinderGeometry(2, 2, 3, 32), cutawayBonnetMat);
-  cutawayBonnet.position.set(0, 7.5, 0);
-  cutawayModel.add(cutawayBonnet);
-
-  const cutawaySpringHousing = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 2, 32), cutawaySpringHousingMat);
-  cutawaySpringHousing.position.set(0, 10, 0);
-  cutawayModel.add(cutawaySpringHousing);
-
-  const cutawayCap = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.6, 0.3, 32), cutawayFlangeMat);
-  cutawayCap.position.set(0, 11.15, 0);
-  cutawayModel.add(cutawayCap);
-
-  const cutawayInletFlange = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 2.8, 0.4, 32), cutawayFlangeMat);
-  cutawayInletFlange.position.set(0, 0.2, 0);
-  cutawayModel.add(cutawayInletFlange);
-
-  for (let i = 0; i < boltCount; i++) {
-    const angle = (i / boltCount) * Math.PI * 2;
-    const bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.6, 8), cutawayFlangeMat);
-    bolt.position.set(Math.cos(angle) * boltR, 0.2, Math.sin(angle) * boltR);
-    cutawayModel.add(bolt);
+  function cloneMesh(mesh) {
+    let mat;
+    if (mesh.material === bodyMat) mat = cutawayMat;
+    else if (mesh.material === bonnetMat) mat = cutawayBonnetMat;
+    else if (mesh.material === springHousingMat) mat = cutawaySpringHousingMat;
+    else if (mesh.material === flangeMat) mat = cutawayFlangeMat;
+    else if (mesh.material === goldMat) mat = cutawayGoldMat;
+    else if (mesh.material === springMat) mat = springMat;
+    else mat = mesh.material;
+    const m = new THREE.Mesh(mesh.geometry, mat);
+    m.position.copy(mesh.position);
+    m.rotation.copy(mesh.rotation);
+    return m;
   }
 
-  const cutawayOutletFlange = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.4, 24), cutawayFlangeMat);
-  cutawayOutletFlange.rotation.z = Math.PI / 2;
-  cutawayOutletFlange.position.set(4.2, 8, 0);
-  cutawayModel.add(cutawayOutletFlange);
-
-  const cutawayNozzle = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 3.5, 24), cutawayMat);
-  cutawayNozzle.rotation.z = Math.PI / 2;
-  cutawayNozzle.position.set(3.25, 6.5, 0);
-  cutawayModel.add(cutawayNozzle);
-
-  const cutawaySeatRing = new THREE.Mesh(
-    new THREE.TorusGeometry(1.2, 0.15, 12, 24),
-    cutawayGoldMat
-  );
-  cutawaySeatRing.rotation.x = Math.PI / 2;
-  cutawaySeatRing.position.set(3.25, 8.2, 0);
-  cutawayModel.add(cutawaySeatRing);
-
-  const cutawayPlug = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.3, 0.3, 24), cutawayGoldMat);
-  cutawayPlug.rotation.x = Math.PI / 2;
-  cutawayPlug.position.set(3.25, 6.5, 0);
-  cutawayModel.add(cutawayPlug);
-
-  const cutawaySpringPoints = [];
-  for (let i = 0; i <= 100; i++) {
-    const t = i / 100;
-    const angle = t * springCoils * Math.PI * 2;
-    cutawaySpringPoints.push(new THREE.Vector3(
-      Math.cos(angle) * springRadius,
-      8.5 + t * springHeight,
-      Math.sin(angle) * springRadius
-    ));
-  }
-  const cutawaySpringGeometry = new THREE.TubeGeometry(
-    new THREE.CatmullRomCurve3(cutawaySpringPoints),
-    100, 0.08, 8, false
-  );
-  const cutawaySpring = new THREE.Mesh(cutawaySpringGeometry, springMat);
-  cutawayModel.add(cutawaySpring);
+  [inletFlange, body, nozzle, seatRing, plug, spring, bonnet, backSeat, cap, outlet, outletFlange].forEach((m) => {
+    cutawayModel.add(cloneMesh(m));
+  });
 
   scene.add(model);
   scene.add(cutawayModel);
@@ -294,7 +266,7 @@ export function initValve3D() {
   controls.dampingFactor = 0.08;
   controls.autoRotate = true;
   controls.autoRotateSpeed = 1.2;
-  controls.target.set(1.5, 5.5, 0);
+  controls.target.set(0, 5.5, 0);
   controls.minDistance = 12;
   controls.maxDistance = 45;
   controls.enablePan = false;
@@ -309,11 +281,11 @@ export function initValve3D() {
     idleTimer = setTimeout(() => { controls.autoRotate = true; }, 3000);
   });
 
-  // Labels
+  // Labels point at the three lapped faces.
   const labelPositions = [
-    { text: 'Seat face', pos: new THREE.Vector3(3.4, 8.9, 1.2) },
-    { text: 'Plug face', pos: new THREE.Vector3(3.4, 6.4, 1.2) },
-    { text: 'Back seat', pos: new THREE.Vector3(1.4, 9.6, 1.2) },
+    { text: 'Seat face', pos: new THREE.Vector3(-2.6, 0.6 + 5.2 + 0.25 + 0.4, 1.6) },
+    { text: 'Plug face', pos: new THREE.Vector3(2.2, plug.position.y - 0.1, 1.6) },
+    { text: 'Back seat', pos: new THREE.Vector3(-2.0, backSeat.position.y, 1.6) },
   ];
 
   const labelEls = labelPositions.map((l) => {
