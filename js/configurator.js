@@ -365,6 +365,11 @@
     var btn = ev.target.closest('.btn-remove-line');
     if (btn) removePasteLine(btn.closest('.paste-line'));
   });
+  els.pasteLines.addEventListener('change', function (ev) {
+    // Re-sync line visibility when the product changes (e.g. kit hides
+    // grit/size/pack — the kit sells as-is).
+    if (ev.target && ev.target.classList.contains('pl-product')) refreshLineUI();
+  });
 
   els.copyBtn.addEventListener('click', function () {
     var text = summaryText();
