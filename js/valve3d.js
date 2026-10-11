@@ -3,6 +3,7 @@
 
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+import { RoomEnvironment } from 'https://unpkg.com/three@0.160.0/examples/jsm/environments/RoomEnvironment.js';
 
 export function initValve3D() {
   const container = document.getElementById('valve3d-canvas');
@@ -41,12 +42,25 @@ export function initValve3D() {
   // Scene
   const scene = new THREE.Scene();
 
-  // Lights
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
-  keyLight.position.set(5, 8, 6);
+  // Environment map: gives the metal something to reflect (prevents black metal)
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  pmrem.dispose();
+
+  // Lights (brighter: key + cool fill + stronger ambient so metal reads, not black)
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+  keyLight.position.set(6, 10, 8);
   scene.add(keyLight);
 
-  const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+  const fillLight = new THREE.DirectionalLight(0x8899ff, 1.0);
+  fillLight.position.set(-8, 4, -6);
+  scene.add(fillLight);
+
+  const rimLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  rimLight.position.set(0, 6, -10);
+  scene.add(rimLight);
+
+  const ambientLight = new THREE.AmbientLight(0x666677, 1.2);
   scene.add(ambientLight);
 
   // Materials
@@ -297,9 +311,9 @@ export function initValve3D() {
 
   // Labels
   const labelPositions = [
-    { text: 'Seat face', pos: new THREE.Vector3(3.25, 8.8, 1.2) },
-    { text: 'Plug face', pos: new THREE.Vector3(3.25, 6.0, 1.2) },
-    { text: 'Back seat', pos: new THREE.Vector3(1.5, 6.5, 1.2) },
+    { text: 'Seat face', pos: new THREE.Vector3(3.4, 8.9, 1.2) },
+    { text: 'Plug face', pos: new THREE.Vector3(3.4, 6.4, 1.2) },
+    { text: 'Back seat', pos: new THREE.Vector3(1.4, 9.6, 1.2) },
   ];
 
   const labelEls = labelPositions.map((l) => {
