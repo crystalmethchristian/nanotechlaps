@@ -38,7 +38,7 @@ selection. Keep it that way in any future copy edits.
 ## Configurator URL presets (product-page buttons)
 
 Every product-page CTA deep-links into `configurator.html` with the spec preloaded:
-`?shape=round|square|rectangle&size=6&length=8&width=6&thickness=3/8&glass=frosted|clear&grit=600&paste=kit|tin|syringe|multipack|none&paste_grit=1000`
+`?shape=round|square|rectangle&size=6&length=8&width=6&glass=frosted|clear&grit=600&paste=kit|tin|syringe|multipack|none&paste_grit=1000`
 Unknown/missing values fall back to form defaults silently. Paste presets add one paste line
 (mix-and-match: users can add more lines in the form).
 
@@ -79,7 +79,6 @@ All free-use, via Wikimedia Commons. Attribution footer is on `products.html` �
 - `images/navy-valve-seat.jpg` — U.S. Navy (public domain), photo by MCS2 Christopher Dollar
 - `images/valve-dn25.jpg` — © RomanM82, CC BY-SA 4.0
 - `images/valve-schematic.png` — © Mbeychok, CC BY-SA 3.0 (generic relief-valve cross-section, not a manufacturer diagram)
-- `images/surface-damaged.jpg` — CC0 (public domain)
 - `images/surface-lapped.jpg` — © Bestemrc, CC BY-SA 4.0
 
 ## API 526 / DN spec table (products page)

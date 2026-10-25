@@ -16,14 +16,13 @@
      ?size=6                round diameter (any hosted inch value, or "custom")
      ?length=8              rectangle length / square side
      ?width=6               rectangle width
-     ?thickness=3/8         1/4 | 3/8 | 1/2 | 3/4 | 1
      ?glass=frosted|clear
      ?grit=600              320 | 400 | 600 | 800 | 1000
      ?paste=kit|tin|syringe|multipack|none   (kit = Finishing Ladder Kit,
                             1000 + 1500 + 2000 + 4000, 4 syringes; adds paste
                             and sets the product select via its data-key)
      ?paste_grit=1000       any grit in the paste-grit select
-     Example: configurator.html?shape=round&size=6&thickness=3/8&glass=frosted&grit=600&paste=kit
+     Example: configurator.html?shape=round&size=6&glass=frosted&grit=600&paste=kit
 */
 (function () {
   'use strict';
@@ -44,7 +43,6 @@
     fieldLen: document.getElementById('field-length'),
     fieldWid: document.getElementById('field-width'),
     customNotice: document.getElementById('custom-notice'),
-    thickness: document.getElementById('thickness'),
     grit: document.getElementById('grit'),
     fieldGrit: document.getElementById('field-grit'),
     qty: document.getElementById('qty'),
@@ -58,7 +56,6 @@
     notes: document.getElementById('cust-notes'),
     sShape: document.getElementById('s-shape'),
     sSize: document.getElementById('s-size'),
-    sThickness: document.getElementById('s-thickness'),
     sGlass: document.getElementById('s-glass'),
     sGrit: document.getElementById('s-grit'),
     sQty: document.getElementById('s-qty'),
@@ -236,7 +233,6 @@
       '------------------------------',
       'Shape:      ' + shape(),
       'Size:       ' + sizeText(),
-      'Thickness:  ' + els.thickness.value,
       'Glass type: ' + g,
       'Grit:       ' + (g === 'Frosted' ? els.grit.value : 'polishing stage (clear lap)'),
       'Quantity:   ' + num(els.qty, 1) + ' ' + (num(els.qty, 1) === 1 ? 'lap' : 'laps'),
@@ -257,7 +253,7 @@
 
   function subjectText() {
     return 'Lapping Glass Quote Request - ' + shape() + ' ' + sizeText() +
-      ' ' + els.thickness.value + ' ' + glass();
+      ' ' + glass();
   }
 
   function update() {
@@ -268,7 +264,6 @@
     var g = glass();
     els.sShape.textContent = shape();
     els.sSize.textContent = sizeText();
-    els.sThickness.textContent = els.thickness.value;
     els.sGlass.textContent = g;
     els.sGrit.textContent = (g === 'Frosted') ? els.grit.value : 'n/a (polishing)';
     var q = num(els.qty, 1);
@@ -290,14 +285,6 @@
     if (!value) return;
     for (var i = 0; i < sel.options.length; i++) {
       if (sel.options[i].value === value) { sel.selectedIndex = i; return; }
-    }
-  }
-
-  function selectThickness(value) {
-    if (!value) return;
-    var v = value.replace(/"/g, '');
-    for (var i = 0; i < els.thickness.options.length; i++) {
-      if (els.thickness.options[i].value.indexOf(v) === 0) { els.thickness.selectedIndex = i; return; }
     }
   }
 
@@ -330,7 +317,6 @@
     selectValue(els.diameter, q.get('size'));
     selectValue(els.length, q.get('length') || (s === 'square' ? q.get('size') : null));
     selectValue(els.width, q.get('width'));
-    selectThickness(q.get('thickness'));
 
     var g = (q.get('glass') || '').toLowerCase();
     if (g === 'frosted' || g === 'clear') {
